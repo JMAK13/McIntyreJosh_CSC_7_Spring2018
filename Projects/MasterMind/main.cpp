@@ -61,7 +61,6 @@ int main(int argc, char** argv) {
                     int n=rand()%8 + 1;
                     if(!used(key,i,n)) {key[i]=n;val=true;}
                 }while(!val);
-                cout<<key[i]<<" ";
             }
 
             //Game Loop
