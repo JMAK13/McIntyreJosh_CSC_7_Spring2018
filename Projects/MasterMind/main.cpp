@@ -27,9 +27,6 @@ int main(int argc, char** argv) {
     bool valid=false;
     int input;
     
-    //Seed Random Function With Time
-    srand(static_cast<unsigned int>(time(0)));
-    
     //Player Menu
     cout<<"Welcome to MasterMind by Josh McIntyre\nPress 0 to Exit\nPress 1 to Play\nPress 2 for Rules\n\n";
     do{
