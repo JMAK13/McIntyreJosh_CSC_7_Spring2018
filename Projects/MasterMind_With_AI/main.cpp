@@ -41,7 +41,7 @@ int main(int argc, char** argv) {
     for(int i=0; i<4; i++){
         bool done=false;
         do{
-            if(key[i]-46<0||key[i]-46>9){
+            if(key[i]-'0'<0||key[i]-'0'>9){
                 cout<<"Please enter a new digit: ";
                 cin>>key[i];
             } else done=true;
@@ -61,6 +61,7 @@ int main(int argc, char** argv) {
         guess=AI(guesses,clues1,clues2,pNums);
         rGuess=guess;
         cout<<"Guess: "<<guess<<endl;
+        cout<<"Number of Guess: "<<guesses.size()<<endl;
         
         //Check how many are right place
         for(int i=0;i<key.length();i++){
@@ -113,30 +114,53 @@ string AI(vector<string> guesses, vector<int> clues1, vector<int> clues2, vector
     
     //Declare AI Variables
     string guess;
+    bool sum4=false;
     
     //Initial Guess
-    if(guesses.size()==0) return "0011";
+    if(guesses.size()==0) return "0000";
     
+    //If Numbers Are Correct Guess New Order
     for(int i=0; i<guesses.size(); i++){
-        if(clues1[i]+clues2[i]==4) {
-            int j=0,t=0;
+        if((clues1[i]+clues2[i])==4) {
+            sum4=true;
+            int j=0;
+            guess=guesses[i];
             do{
-                guess=guesses[i];
-                int tmp=guess[j];
-                guess[j]=guess[j+1];
-                guess[j+1]=tmp;
-                j++;
-            }while(contains(guesses, guess));
-        }else{
-            guess=guesses[guesses.size()-1];
-            if(pNums.size()==4) {guess[0]=pNums[i]; guess[1]=pNums[1]; guess[2]=pNums[2]; guess[3]=pNums[3];return guess;}
-            if(clues2[i]==2) {pNums.push_back(guess[0]); pNums.push_back(guess[2]);}
-            if(clues1[i]==1&&clues2[i-1]==1) pNums.push_back(guess[2]);
-            guess[0]++;
-            guess[1]++;
-            guess[2]++;
-            guess[3]++;
+                int swap1=rand()%4,swap2=rand()%4;
+                int temp=guess[swap1];
+                guess[swap1]=guess[swap2];
+                guess[swap2]=temp;
+            }while(contains(guesses,guess));
+            return guess;
+        }else sum4=false;
+    }
+    
+    //Try To Find New Numbers
+    if(!sum4){
+        int last=guesses.size()-1;
+        guess=guesses[last];
+        string tGuess=guess;
+           
+        if(pNums.size()==4){
+            tGuess[0]=pNums[0];
+            tGuess[1]=pNums[1];
+            tGuess[2]=pNums[2];
+            tGuess[3]=pNums[3];
+            if(!contains(guesses, tGuess)) return tGuess;
         }
+            
+        else if(clues1[last]>0){
+            for(int y=0; y<clues1[last]; y++){
+                pNums.push_back(guess[0]);
+            }
+        }
+            
+        guess[0]++;
+        guess[1]++;
+        guess[2]++;
+        guess[3]++;
+        
+        return guess;
     }
     
     return guess;
