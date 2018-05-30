@@ -61,7 +61,7 @@ int main(int argc, char** argv) {
         guess=AI(guesses,clues1,clues2,pNums);
         rGuess=guess;
         cout<<"Guess: "<<guess<<endl;
-        cout<<"Number of Guess: "<<guesses.size()<<endl;
+        cout<<"Number of Guesses: "<<guesses.size()<<endl;
         
         //Check how many are right place
         for(int i=0;i<key.length();i++){
@@ -103,7 +103,7 @@ int main(int argc, char** argv) {
         
         //Increments Turns
         turns++;
-    }while(turns<20 && !solved);
+    }while(turns<35 && !solved);
     
     //Exits Program
     return 0;
