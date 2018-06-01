@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="_8dep_8inc" kind="file" language="PHP">
+    <compoundname>.dep.inc</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>This<sp/>code<sp/>depends<sp/>on<sp/>make<sp/>tool<sp/>being<sp/>used</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal">DEPFILES=$(wildcard<sp/>$(addsuffix<sp/>.d,<sp/>${OBJECTFILES}<sp/>${TESTOBJECTFILES}))</highlight></codeline>
+<codeline lineno="3"><highlight class="normal">ifneq<sp/>(${DEPFILES},)</highlight></codeline>
+<codeline lineno="4"><highlight class="normal">include<sp/>${DEPFILES}</highlight></codeline>
+<codeline lineno="5"><highlight class="normal">endif</highlight></codeline>
+    </programlisting>
+    <location file=".dep.inc"/>
+  </compounddef>
+</doxygen>
